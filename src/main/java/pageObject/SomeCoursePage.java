@@ -24,10 +24,10 @@ public class SomeCoursePage extends AbsPageObject {
 
     public void checkInfoAboutCourse() {
         for (WebElement info : this.infoAboutCoursesList) {
-            Assertions.assertNotNull(info.getText(), "There is no text in info");
+            Assertions.assertNotNull(info.getText(), "В информации нет текста");
         }
-        Assertions.assertNotNull(nameOfCourse.getText(), "There is no text in title");
-        Assertions.assertNotNull(descriptionOfCourse.getText(), "There is no text in description");
+        Assertions.assertNotNull(nameOfCourse.getText(), "В заголовке нет текста");
+        Assertions.assertNotNull(descriptionOfCourse.getText(), "В описании нет текста");
     }
 
 }

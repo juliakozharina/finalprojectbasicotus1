@@ -35,7 +35,7 @@ public class EventsPage extends AbsPageObject {
     }
 
     public void checkDates() throws ParseException {
-        Assertions.assertNotEquals(0, listOfDates.size(), "There is no any card on page");
+        Assertions.assertNotEquals(0, listOfDates.size(), "На странице нет ни одной карточки");
         SimpleDateFormat formatterForYear = new SimpleDateFormat("yyyy");
         SimpleDateFormat formatterForCard = new SimpleDateFormat("dd MM yyyy");
         Date date = new Date(System.currentTimeMillis());
@@ -44,7 +44,7 @@ public class EventsPage extends AbsPageObject {
         List<Date> dates = new ArrayList<>();
         String datesForList = null;
         Date currentDate = formatterForCard.parse(currentDateString);
-        log.info("Amount courses for test: {}", listOfDates.size());
+        log.info("Сумма курсов для теста: {}", listOfDates.size());
         for (WebElement element : listOfDates) {
             datesForList = String.format("%s %s", element.getText(), year);
             dates.add(formatterForCard.parse(datesForList));
@@ -55,9 +55,9 @@ public class EventsPage extends AbsPageObject {
                 result = true;
             } else {
                 result = false;
-                log.debug("Problem with next date: {}", dates.get(i));
+                log.debug("Проблема со следующей датой: {}", dates.get(i));
             }
-            Assertions.assertTrue(result, String.format("Wrong date in card # %s", i + 1));
+            Assertions.assertTrue(result, String.format("Неверная дата в карточке # %s", i + 1));
         }
     }
 
@@ -81,9 +81,9 @@ public class EventsPage extends AbsPageObject {
 
 
     public void checkEventType(EventsTypeData eventsTypeShouldBe) {
-        Assertions.assertNotEquals(0, listOfEventsTypes.size(), "There is no any card on page");
+        Assertions.assertNotEquals(0, listOfEventsTypes.size(), "На странице нет ни одной карточки");
         for (WebElement element : listOfEventsTypes) {
-            Assertions.assertEquals(eventsTypeShouldBe.getName(), element.getText(), "There is error in type of event");
+            Assertions.assertEquals(eventsTypeShouldBe.getName(), element.getText(), "Ошибка в типе события");
         }
     }
 
