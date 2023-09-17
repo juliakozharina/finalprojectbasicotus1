@@ -5,35 +5,47 @@ import data.events.EventsData;
 import data.events.EventsTypeData;
 import data.MainMenuItemsData;
 import driver.DriverFactory;
+import exceptions.DriverNotSupportedException;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pageObject.*;
+import pageobject.*;
 
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static driver.DriverFactory.setDriverName;
 
 
 @Slf4j
 public class OtusTest {
     private WebDriver driver;
 
+    @SneakyThrows
     @BeforeAll
     public static void install(){
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
-    public void setUp(){
-        driver = new ChromeDriver();
+    public void setUp() throws DriverNotSupportedException {
+        List<String> option = new ArrayList<>();
+        option.add("--window-size=1920,1080");
+        driver = new DriverFactory().create(setDriverName(), option);
+        log.info("Test started in {} browser",setDriverName());
+ //       driver = new ChromeDriver();
     }
 
     @AfterEach
     public void setDown(){
-        if (driver != null)
-            driver.quit();
+        if (this.driver != null){
+            this.driver.close();
+            this.driver.quit();
+        }
     }
 
 

@@ -1,6 +1,7 @@
-package pageObject;
+package pageobject;
 
 import data.events.EventsTypeData;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -74,8 +76,9 @@ public class EventsPage extends AbsPageObject {
         eventTypeSelector.click();
     }
 
+    @SneakyThrows
     public void selectEventType(EventsTypeData eventsType) {
-        String element = String.format("/html/body/div[1]/div/div[1]/div/section/header/div[2]/div[2]/a[4]", eventsType.getName());
+      String element = new String("(//a[contains(@title, '%s')])[1]".getBytes(), eventsType.getName());
         driver.findElement(By.xpath(element)).click();
     }
 

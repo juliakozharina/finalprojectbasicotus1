@@ -1,7 +1,7 @@
 package components;
 
 import org.openqa.selenium.WebDriver;
-import pageObject.AbsPageObject;
+import pageobject.AbsPageObject;
 
 public abstract class AbsBaseComponent extends AbsPageObject {
 
