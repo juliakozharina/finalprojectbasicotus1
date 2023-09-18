@@ -23,6 +23,7 @@ public class DriverFactory {
                         chromeOptions.addArguments(option);
                     }
                 }
+                return new ChromeDriver(chromeOptions);
             default:
                 throw new DriverNotSupportedException(driverName);
         }
