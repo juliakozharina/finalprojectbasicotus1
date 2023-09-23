@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class AbsPageObject {
     protected WebDriver driver;
     protected Actions actions;
+    protected String path = "/";
 
     public AbsPageObject(WebDriver driver) {
         this.driver = driver;
@@ -16,7 +17,7 @@ public abstract class AbsPageObject {
     }
 
     public void openMainPage() {
-        driver.get(System.getProperty("base.url"));
+        driver.get(System.getProperty("base.url") + this.path);
     }
 
 }

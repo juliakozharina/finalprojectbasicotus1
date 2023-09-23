@@ -24,6 +24,8 @@ import static driver.DriverFactory.setDriverName;
 @Slf4j
 public class OtusTest {
     private WebDriver driver;
+    protected String path = "/";
+
 
     @SneakyThrows
     @BeforeAll
